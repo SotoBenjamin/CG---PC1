@@ -10,7 +10,7 @@ def resize(InputImage,NEW_WIDTH,NEW_HEIGHT,PADDING_STRATEGY):
         pad_img = np.pad(InputImage , ((1,1),(1,1),(0,0)),mode = d[PADDING_STRATEGY])
         ans = np.zeros((NEW_HEIGHT,NEW_WIDTH,3))
     else:
-        pad_img = np.pad(InputImage , ((1,1),(1,1)),mode = PADDING_STRATEGY)
+        pad_img = np.pad(InputImage , ((1,1),(1,1)),mode = d[PADDING_STRATEGY])
         ans = np.zeros((NEW_HEIGHT,NEW_WIDTH))
     HEIGHT,WIDTH = InputImage.shape[0] , InputImage.shape[1]
     
