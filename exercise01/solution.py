@@ -16,8 +16,8 @@ def resize(InputImage,NEW_WIDTH,NEW_HEIGHT,PADDING_STRATEGY):
     
     for i in range(NEW_HEIGHT):
         for j in range(NEW_WIDTH):
-            x = (i/(NEW_HEIGHT-1))*(HEIGHT -1)
-            y = (j/(NEW_WIDTH-1))*(WIDTH-1)
+            x = (i/(max(NEW_HEIGHT-1,1)))*(HEIGHT-1)
+            y = (j/(max(NEW_WIDTH-1,1)))*(WIDTH-1)
             x0  , y0 = int(x) , int(y)
             x1 , y1 = x0 + 1 , y0 +1
            
@@ -26,5 +26,5 @@ def resize(InputImage,NEW_WIDTH,NEW_HEIGHT,PADDING_STRATEGY):
 
 img = cv2.imread('lenna.png')
 print(img.shape)
-ans = resize(img,1080,1080,'ZEROS')
+ans = resize(img,1000,1000,'ZEROS')
 cv2.imwrite('ans.png',ans)
