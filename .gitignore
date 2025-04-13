@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# VSCode y JetBrains
+.vscode/
+.idea/
+
+# Archivos temporales de editores
+~$*
+~lock.*
+
+# Archivos binarios y objetos
+*.exe
+*.o
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+*.bin
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+venv/
+
+# CMake
+cmake-build-debug/
+
+# Verilog
+*.vcd
+*.vvp
