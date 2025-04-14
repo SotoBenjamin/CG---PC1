@@ -15,9 +15,7 @@ class Circle:
     
 
 def create_animation(num_circles : int,h : int,w : int):
-    
-    r = 10
-    vx,vy = 5,10
+    r = 30
     circles = [Circle(random.randint(r,h-r),random.randint(r,w-r),r,random.randint(1,10),random.randint(1,10)) for _ in range(num_circles)]
     
     
@@ -57,4 +55,4 @@ def create_animation(num_circles : int,h : int,w : int):
         cv2.waitKey(20)
     
     
-create_animation(1,600,1000)
+create_animation(10,600,1000)
