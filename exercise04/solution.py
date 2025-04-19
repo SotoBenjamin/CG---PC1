@@ -3,7 +3,6 @@ import cv2
 
 def create_mask(n):
     ans = 255*np.ones((n,n,3),dtype=np.uint8)
-    print(n)
     h,k = n//2,n//2
     r = n//2
     for i in range(n):
@@ -21,7 +20,7 @@ def f(img,i,j,t):
 def change_sacle(img,scale_img):
     h = img.shape[0]
     w = img.shape[1]
-    ans = np.zeros((h,w,3))
+    ans = np.zeros((h,w,3) , dtype= np.uint8)
     for i in range(h):
         for j in range(w):
             ans[i,j] = f(img,i,j,scale_img[i,j])
@@ -32,4 +31,4 @@ def change_sacle(img,scale_img):
 img = cv2.imread('lenna.png')
 mask = create_mask(img.shape[0])
 ans = change_sacle(img,mask)
-cv2.imwrite('output/lenna-colorscale.png',ans)
+cv2.imwrite('exercise04/output/lenna-colorscale.png',ans)

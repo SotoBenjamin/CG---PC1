@@ -22,9 +22,5 @@ def resize(InputImage,NEW_WIDTH,NEW_HEIGHT,PADDING_STRATEGY):
             x1 , y1 = x0 + 1 , y0 +1
            
             ans[i,j] = InterPolar(pad_img,x0,y0,x1,y1,x,y) 
-    return ans
+    return ans.astype(dtype= np.uint8)
 
-img = cv2.imread('lenna.png')
-print(img.shape)
-ans = resize(img,1000,1000,'ZEROS')
-cv2.imwrite('ans.png',ans)

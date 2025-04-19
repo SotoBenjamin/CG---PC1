@@ -64,19 +64,13 @@ def gaussian_kernel(n):
     return m/np.sum(m)
 
 
-img = cv2.imread('lenna.png')    
-
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-gray3 = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
-
-
-kernel3 = np.array([
+laplacian3 = np.array([
     [ 0, 1,  0],
     [1,  -4, 1],
     [ 0, 1,  0]
 ], dtype=np.float32)
 
-kernel5 = np.array([
+laplacian5 = np.array([
     [ 0,  0,  1,  0,  0],
     [ 0,  1,  2, 1,  0],
     [1, 2, -17, 2, 1],
@@ -85,10 +79,38 @@ kernel5 = np.array([
 ], dtype=np.float32)
 
 
-res3 = filter(gray3, kernel3, type='edge')
-res5 = filter(gray3, kernel5, type='edge')
+img = cv2.imread('lenna.png')
 
-cv2.imwrite('lap3x3_custom.jpg', res3)
-cv2.imwrite('lap5x5_custom.jpg', res5)
+### box:
+box = []
+for k in range(3,27,2):
+    box.append(box_kernel(k))
+#### barlett:
+bartlett = []
+for k in range(3,27,2):
+    bartlett.append(bartlett_kernel(k))
+## gaussian:
+gaussian = []
+for k in range(3,27,2):
+    gaussian.append(gaussian_kernel(k))
 
+test = [box, bartlett, gaussian]
+names = ['box','bartlett','gaussian']
+img1 = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+img1 = cv2.cvtColor(img1,cv2.COLOR_GRAY2BGR)
+for i in range(len(test)):
+    name = names[i]
+    for t in test[i]:
+        ans = filter(img,t,'edge')
+        ans1 = filter(img1,t,'edge')
+        cv2.imwrite(f'exercise05/output/{name}_rgb_{t.shape[0]}.png',ans)
+        cv2.imwrite(f'exercise05/output/{name}_gray_{t.shape[0]}.png',ans1)
 
+l3 = filter(img1,laplacian3,'edge')
+l5 = filter(img1,laplacian5,'edge')
+
+cv2.imwrite('exercise05/output/laplacian3.png',l3)
+cv2.imwrite('exercise05/output/laplacian5.png',l5)    
+
+cv2.imwrite('exercise05/output/original_rgb.png',img)
+cv2.imwrite('exercise05/output/original_gray.png',img1)
