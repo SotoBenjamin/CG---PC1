@@ -99,25 +99,25 @@ function create_table(){
   thExtra.textContent = 'Laplacian';
   trExtra.appendChild(thExtra);
 
-  let tdOrig = trExtra.insertCell();
-  const imgOrigGray = document.createElement('img');
-  imgOrigGray.className = 'orig-img';
-  imgOrigGray.src = 'original_gray.png';
-  tdOrig.appendChild(imgOrigGray);
+  let td_orig = trExtra.insertCell();
+  const img_orig_gray = document.createElement('img');
+  img_orig_gray.className = 'orig-img';
+  img_orig_gray.src = 'original_gray.png';
+  td_orig.appendChild(img_orig_gray);
 
-  let tdFilt = trExtra.insertCell();
+  let td_laplacian = trExtra.insertCell();
 
-  const imgLap3 = document.createElement('img');
-  imgLap3.className = 'orig-img';
-  imgLap3.src    = 'laplacian3.png';
-  imgLap3.style.marginRight = '10px';   
-  tdFilt.appendChild(imgLap3);
+  const img_lap3 = document.createElement('img');
+  img_lap3.className = 'orig-img';
+  img_lap3.src    = 'laplacian3.png';
+  img_lap3.style.marginRight = '10px';   
+  td_laplacian.appendChild(img_lap3);
 
-  const imgLap5 = document.createElement('img');
-  imgLap5.className = 'orig-img';
-  imgLap5.src    = 'laplacian5.png';
-  imgLap5.alt    = 'laplacian5.png';
-  tdFilt.appendChild(imgLap5);
+  const img_lap5 = document.createElement('img');
+  img_lap5.className = 'orig-img';
+  img_lap5.src    = 'laplacian5.png';
+  img_lap5.alt    = 'laplacian5.png';
+  td_laplacian.appendChild(img_lap5);
 }
 
 document.addEventListener('DOMContentLoaded',create_table);
