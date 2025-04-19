@@ -55,7 +55,7 @@ def create_animation(num_circles : int,h : int,w : int , radius : int):
                     overlap = sum_radius - c12_norm
                     c1.center += c12*overlap
                     c2.center -= c12*overlap
-    for _ in range(5000):
+    while 1:
         img = 255*np.zeros((h,w,3),dtype=np.uint8)
         
         collision(circles)
@@ -67,7 +67,11 @@ def create_animation(num_circles : int,h : int,w : int , radius : int):
         
         for c in circles:
             update(c)
-        cv2.waitKey(20)
-        
-    
+        key = cv2.waitKey(1) & 0xFF
+        if key == 27:
+            break
+    cv2.destroyAllWindows()
+
 create_animation(30,1000,1000,10)
+
+
