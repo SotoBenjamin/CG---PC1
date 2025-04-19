@@ -2,6 +2,8 @@ import numpy as np
 import cv2
 
 
+global dp
+
 def padding(image, k ,type):
     pad_width = k // 2
     padded_image = np.pad(image, ((pad_width, pad_width), (pad_width, pad_width), (0, 0)), mode=type)
@@ -52,11 +54,11 @@ def pascal_triangle(n):
         for j in range(1,sz-1):
             row[j] = rows[i-1][j-1] + rows[i-1][j]
         rows.append(row)
-    return rows[n-1]
+    return rows
 
 
 def gaussian_kernel(n):
-    a = pascal_triangle(n)
+    a = dp[n-1]
     m = np.zeros((n,n) , np.float32)
     for i in range(n):
         for j in range(n):
@@ -80,8 +82,10 @@ laplacian5 = np.array([
 
 
 img = cv2.imread('lenna.png')
-
-### box:
+dp = pascal_triangle(25)
+# for i in dp:
+#     print(i)
+## box:
 box = []
 for k in range(3,27,2):
     box.append(box_kernel(k))
@@ -114,3 +118,8 @@ cv2.imwrite('exercise05/output/laplacian5.png',l5)
 
 cv2.imwrite('exercise05/output/original_rgb.png',img)
 cv2.imwrite('exercise05/output/original_gray.png',img1)
+
+l3_color = filter(img,laplacian3,'edge')
+l5_color = filter(img,laplacian5,'edge')
+cv2.imwrite('exercise05/output/laplacian_rgb3.png',l3_color)
+cv2.imwrite('exercise05/output/laplacian_rgb5.png',l5_color) 

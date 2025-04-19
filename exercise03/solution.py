@@ -1,6 +1,9 @@
 import numpy as np
 import cv2
 
+global original
+global full_contrast
+
 def contrast(original):
     min_pixels = np.min(original,axis=(0,1))
     max_pixels = np.max(original,axis=(0,1))
@@ -17,7 +20,7 @@ def InterPolar(c,original,full_contrast):
     ans = ans.astype(np.uint8)
     return ans
 
-def f(c,original,full_contrast):
+def f(c):
     current = InterPolar(c,original,full_contrast)
     cv2.imshow("Contrast", current)
 
@@ -25,10 +28,10 @@ def f(c,original,full_contrast):
 original = cv2.imread('lowcontrast.png')
 full_contrast = contrast(original)
 
-cv2.namedWindow("Contrast", cv2.WINDOW_NORMAL)
-cv2.createTrackbar("Contrast%", "Contrast", 0, 100, lambda c: f(c, original, full_contrast))
+cv2.namedWindow("Contrast", cv2.WINDOW_AUTOSIZE)
+cv2.createTrackbar("Contrast%", "Contrast", 0, 100, f)
 
-f(0,original,full_contrast)
+f(0)
 
 while True:
     key = cv2.waitKey(1) & 0xFF

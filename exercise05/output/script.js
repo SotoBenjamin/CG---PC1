@@ -92,11 +92,11 @@ function create_table(){
     td.appendChild(create_carousel(filter, type));
   }
 
-  //fila especial para laplaciano
+  //fila especial para laplaciano gray
   const trExtra = tbody.insertRow();
 
   const thExtra = document.createElement('th');
-  thExtra.textContent = 'Laplacian';
+  thExtra.textContent = 'Laplacian Gray';
   trExtra.appendChild(thExtra);
 
   let td_orig = trExtra.insertCell();
@@ -116,8 +116,35 @@ function create_table(){
   const img_lap5 = document.createElement('img');
   img_lap5.className = 'orig-img';
   img_lap5.src    = 'laplacian5.png';
-  img_lap5.alt    = 'laplacian5.png';
   td_laplacian.appendChild(img_lap5);
+
+
+  /// RGB Laplacian
+  const trExtraRGB = tbody.insertRow();
+  const thExtraRGB = document.createElement('th');
+  thExtraRGB.textContent = 'Laplacian RBG';
+  trExtraRGB.appendChild(thExtraRGB);
+
+  let td_orig_rgb = trExtraRGB.insertCell();
+  const img_orig_gray_rgb = document.createElement('img');
+  img_orig_gray_rgb.className = 'orig-img';
+  img_orig_gray_rgb.src = 'original_rgb.png';
+  td_orig_rgb.appendChild(img_orig_gray_rgb);
+
+  let td_laplacian_rgb = trExtraRGB.insertCell();
+
+  const img_lap3_rgb = document.createElement('img');
+  img_lap3_rgb.className = 'orig-img';
+  img_lap3_rgb.src    = 'laplacian_rgb3.png';
+  img_lap3_rgb.style.marginRight = '10px';   
+  td_laplacian_rgb.appendChild(img_lap3_rgb);
+
+  const img_lap5_rgb = document.createElement('img');
+  img_lap5_rgb.className = 'orig-img';
+  img_lap5_rgb.src    = 'laplacian_rgb5.png';
+  td_laplacian_rgb.appendChild(img_lap5_rgb);
+
+  
 }
 
 document.addEventListener('DOMContentLoaded',create_table);
